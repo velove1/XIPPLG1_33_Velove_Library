@@ -14,7 +14,6 @@ class Reviews extends Model
         'rating',
         'comment',
         'created_at',
-        'updated_at',
     ];
     // Relasi ke tabel Books
     public function book()
