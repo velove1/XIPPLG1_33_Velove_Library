@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -13,13 +11,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $Users = User::all();
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'Users retrieved successfully.',
-            'data' => $Users
-        ], 200);
+        //
     }
 
     /**
@@ -27,33 +19,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
-            'password' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-        ]);
-        
-        Log::info('Request data:', $request->all());
-        
-        try {
-            $User = User::create($request->all());
-        
-            return response()->json([
-                'status' => 201,
-                'message' => 'User created successfully.',
-                'data' => $User
-            ], 201);
-        } catch (\Exception $e) {
-            Log::error('Error creating user:', ['error' => $e->getMessage()]);
-        
-            return response()->json([
-                'status' => 500,
-                'message' => 'Error creating user.',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        //
     }
 
     /**
@@ -61,20 +27,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $User = User::find($id);
-
-        if (!$User) {
-            return response()->json([
-                'status' => 404,
-                'message' => 'User not found.',
-            ], 404);
-        }
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'User retrieved successfully.',
-            'data' => $User
-        ], 200);        
+        //
     }
 
     /**
@@ -82,24 +35,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $User = User::find($id);
-
-        if (!$User) {
-            return response()->json([
-                'status' => 404,
-                'message' => 'User not found.',
-            ], 404);
-        }
-
-        $request->validate(['name' => 'required|string']);
-
-        $User->update($request->all());
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'User updated successfully.',
-            'data' => $User
-        ], 200);
+        //
     }
 
     /**
@@ -107,20 +43,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $User = User::find($id);
-
-        if (!$User) {
-            return response()->json([
-                'status' => 404,
-                'message' => 'User not found.',
-            ], 404);
-        }
-
-        $User->delete();
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'User deleted successfully.',
-        ], 200);
+        //
     }
 }
